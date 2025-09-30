@@ -44,6 +44,14 @@ const Footer = () => {
                   Products
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/login"
+                  className="hover:text-blue-400 transition-colors duration-200"
+                >
+                  Login
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
