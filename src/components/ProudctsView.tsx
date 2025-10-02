@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import SeeMore from "./SeeMore";
 
 interface Props {
   data: any[];
@@ -42,9 +43,7 @@ const ProductsView: FC<Props> = ({ data }) => {
               <span className="text-lg font-bold text-blue-600">
                 ${product.price}
               </span>
-              <button className="bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition">
-                Add to Cart
-              </button>
+              <SeeMore id={product.id} />
             </div>
           </div>
         </div>

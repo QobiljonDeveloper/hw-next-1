@@ -7,7 +7,7 @@ const Users = async () => {
   const response = await fetch("https://fakestoreapi.com/users");
   const data =  await response.json();
   return (
-    <div>
+    <div className="container">
       <UsersView data={data} />
     </div>
   );
