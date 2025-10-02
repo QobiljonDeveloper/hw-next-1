@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import React from "react";
 
 type Props = {
@@ -57,7 +56,7 @@ const DetailProduct = async ({ params }: Props) => {
         </div>
 
         <strong className="text-2xl text-green-600">${data?.price}</strong>
-    </div>
+      </div>
     </div>
   );
 };
