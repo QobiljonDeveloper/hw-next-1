@@ -1,17 +1,27 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import React from "react";
 
-type Props = {
+interface PageProps {
   params: { id: string };
-};
+}
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { id } = params;
 
   const product = await fetch(`https://fakestoreapi.com/products/${id}`).then(
     (res) => res.json()
   );
+
+  if (!product?.title) {
+    return {
+      title: "Product not found",
+      description: "No product available",
+    };
+  }
 
   return {
     title: product.title,
@@ -22,12 +32,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const DetailProduct = async ({ params }: Props) => {
+const DetailProduct = async ({ params }: PageProps) => {
   const { id } = params;
 
   const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
     next: { revalidate: 60 },
   });
+
+  if (!response.ok) return notFound();
 
   const data = await response.json();
 
